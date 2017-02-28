@@ -3,7 +3,7 @@
 
 production:
   adapter: redis
-  url: redis://redistogo:8757195e941c421bb937b61ada5a5b63@crestfish.redistogo.com:10461/
+  url: redis://redistogo:8757195e941c421bb937b61ada5a5b63@crestfish.redistogo.com:10461
 
 development:
   adapter: async

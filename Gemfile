@@ -13,7 +13,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 
-
+  gem 'puma'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5.x'
 gem 'jbuilder', '~> 2.0'
@@ -32,7 +32,6 @@ end
 
 group :development, :test do
   # Use Puma as the app server
-  gem 'puma'
   gem 'byebug'
   gem 'pry'
   gem 'sqlite3'
