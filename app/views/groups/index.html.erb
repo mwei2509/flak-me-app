@@ -1,0 +1,17 @@
+<div class="row col-md-8 col-md-offset-2" id="group-title">
+  <h1>Groups</h1>
+</div>
+
+<div class="row col-md-8 col-md-offset-2" id="groups">
+  <%= render partial: 'group_form', locals: {group: @group} %>
+  <div id="group-errors">
+    
+  </div>
+    <ul id="group-index"> 
+  <% if @groups.any? %>
+      <%= render @groups%>
+  <%else %>
+    </ul>
+    <p>Be the first one to make a group!</p>
+  <% end %>
+</div>
