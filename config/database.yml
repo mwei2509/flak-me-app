@@ -105,6 +105,6 @@ test:
 production:
   adapter: postgresql
   database: HEROKU_POSTGRESQL_AMBER
-  # username: xcslbigpksvpwq
-  # password: 331a63768e7e1d0be66a87e707e2698a180f70a45d80435e39de7808edeaa5e8
-  # host: ec2-23-21-46-94.compute-1.amazonaws.com
+  username: wmrroxvszylhfv
+  password: 83ffa22d1c55f04699af568873573d20b847237b57bc2fdbbfeaf50d0291bd23
+  host: ec2-23-21-213-202.compute-1.amazonaws.com
