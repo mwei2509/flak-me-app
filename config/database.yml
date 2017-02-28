@@ -103,5 +103,8 @@ test:
   database: db/test.sqlite3
 
 production:
-  <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  database: HEROKU_POSTGRESQL_AMBER
+  # username: xcslbigpksvpwq
+  # password: 331a63768e7e1d0be66a87e707e2698a180f70a45d80435e39de7808edeaa5e8
+  # host: ec2-23-21-46-94.compute-1.amazonaws.com
