@@ -1,6 +1,14 @@
 <div class="row col-md-8 col-md-offset-2">
-  <h1><%= @group.topic %></h1>
+  <h1><%= @group.groupname %></h1>
+  You are a <%= @role.role_type %>
+<h3>Admin</h3>
+<%= render partial: 'group_user', collection: @group.get_admin, locals:{status: "admin"} %>
+<%= "<h3>Members</h3>".html_safe if @group.get_members %>
+<%= render partial: 'group_user', collection: @group.get_members, locals:{status: "member"} %>
+<%= "<h3>Banned</h3>".html_safe if !@group.get_banned.empty? %>
+<%= render partial: 'group_user', collection: @group.get_banned, locals:{status: "banned"} %>
 
+<% if @role.role_type.downcase != "banned" %>
 <div class="panel panel-default">
   <% if @group.messages.any? %>
     <div class="panel-body" id="messages">
@@ -15,3 +23,6 @@
 
   <%= render partial: 'messages/message_form', locals: {message: @message, group: @group}%>
 </div>
+<% else %>
+  Please contact the <%= @group.get_admin.username %> for details.
+<% end %>

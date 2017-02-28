@@ -1,0 +1,8 @@
+<%= link_to group_user.username, profile_path(group_user)%>
+<% if status=="banned" %>
+invite back
+<% elsif status=="member" %>
+ban
+<% elsif status=="admin" %>
+admin
+<% end %>

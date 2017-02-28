@@ -1,8 +1,8 @@
 <div class="group-form">
   <%= form_for group, remote: true do |f| %>
     <div class="input-group">
-      <span class="input-group-addon">topic:</span>
-      <%= f.text_field :topic, class: "form-control"%>
+      <span class="input-group-addon">groupname:</span>
+      <%= f.text_field :groupname, class: "form-control"%>
     </div>
     <%= f.submit class: "btn btn-primary", id: "create-group" %>
   <% end %>
