@@ -6,8 +6,7 @@ ruby '2.3.0'
 gem 'rails', '>= 5.0.0.beta3', '< 5.1'
 # Use postgresql as the database for Active Record
 
-# Use Puma as the app server
-gem 'puma'
+
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '~> 5.0'
@@ -32,6 +31,8 @@ end
 
 
 group :development, :test do
+  # Use Puma as the app server
+  gem 'puma'
   gem 'byebug'
   gem 'pry'
   gem 'sqlite3'
