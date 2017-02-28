@@ -86,6 +86,11 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
 
+  #web socket
+  config.web_socket_server_url = "wss://flak-me-app.herokuapp.com/cable"
+  config.action_cable.allowed_request_origins = ['https://flak-me-app.herokuapp.com', 'http://flak-me-app.herokuapp.com']
+
+  #database
   db = URI.parse(ENV['HEROKU_POSTGRESQL_COPPER_URL'] || 'postgres://localhost/mydb')
 
   ActiveRecord::Base.establish_connection(
