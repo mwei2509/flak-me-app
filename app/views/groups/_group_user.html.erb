@@ -1,8 +1,10 @@
 <%= link_to group_user.username, profile_path(group_user)%>
-<% if status=="banned" %>
-invite back
-<% elsif status=="member" %>
-ban
-<% elsif status=="admin" %>
-admin
+<% if @role=="admin" %>
+  <% if status=="banned" %>
+  <%= link_to "Add", modify_group_path(a: "add", user_id: group_user.id) %>
+  <% elsif status=="member" %>
+  <%= link_to "Ban", modify_group_path(a: "ban", user_id: group_user.id) %>
+  <% elsif status=="admin" %>
+  admin
+  <% end %>
 <% end %>

@@ -1,5 +1,5 @@
 {
-  "name": "Chatty",
+  "name": "Flakme",
   "description": "An Action Cable + Rails 5 example app",
   "repository": "https://github.com/SophieDeBenedetto/action-cable-example",
   "keywords": ["rails 5", "action cable", "websockets"],

@@ -10,9 +10,10 @@ class SessionsController < ApplicationController
     user = User.find_by(username: user_params[:username])
     if user && user.authenticate(user_params[:password])
       session[:user_id] = user.id
-      redirect_to groups_path
+      session[:username] = user.username
+      redirect_to dashboard_path
     else
-      redirect_to login_path, flash[:notice] =  {username: ["doesn't exist"]}
+      redirect_to login_path, flash[:notice] =  {login: ["bad password or username"]}
     end
   end
 

@@ -1,0 +1,14 @@
+<h4>My groups</h4>
+<ul>
+<%= render partial: 'users/my_group', collection: @user.get_groups %>
+</ul>
+<hr />
+<h4>Banned from</h4>
+<ul>
+<%= render partial: 'users/my_group', collection: @user.get_banned_groups %>
+</ul>
+<hr />
+<h4>Join Groups</h4>
+<ul>
+  <%= render partial: 'users/my_group', collection: @user.not_in_groups %>
+</ul>

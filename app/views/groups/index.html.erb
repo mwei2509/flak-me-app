@@ -4,10 +4,9 @@
 
 <div class="row col-md-8 col-md-offset-2" id="groups">
   <%= render partial: 'group_form', locals: {group: @group} %>
-  <div id="group-errors">
-    
-  </div>
-    <ul id="group-index"> 
+
+  <%= render partial: 'layouts/flash_errors'%>
+    <ul id="group-index">
   <% if @groups.any? %>
       <%= render @groups%>
   <%else %>

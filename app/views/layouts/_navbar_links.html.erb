@@ -1,13 +1,16 @@
 <ul class="nav navbar-nav">
   <% if current_user %>
+  <li><%= link_to current_user.username, profile_path(current_user) %></li>
    <li>
     <%= link_to "new group", new_group_path%>
    </li>
   <% end %>
-  
+
   <li>
     <%= link_to "groups", groups_path %>
-  </li> 
+  </li>
+  <li>
+  <%= link_to "convos", conversations_path %></li>
 </ul>
 
 <ul class="nav navbar-nav navbar-right">
