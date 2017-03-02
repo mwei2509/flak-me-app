@@ -1,24 +1,39 @@
+<% if @role.downcase != "banned" && !@role.empty? && @group.active %>
 <div class="row">
   <div class="col-sm-4">
-    <%= render partial: 'users/my_groups' %>
+
+    <!-- admin panel div -->
+    <% if @role.downcase=="admin" %>
+      <%= render layout: 'layouts/panel', locals:{title: "Admin Panel"} do %>
+        <%= link_to "Activate", modify_group_path(@group, a: "activate") %>
+        <%= link_to "Deactivate", modify_group_path(@group, a: "deactivate") %>
+        <%= link_to "Delete Group", @group, method: :delete, data: { confirm: "Really?"}%>
+      <% end %>
+    <% end %>
+
+    <!-- member panel div -->
+    <%= render layout: 'layouts/panel', locals:{title: "Member Panel"} do%>
+      <%= link_to "Leave Group", modify_group_path(@group, a: "leave") %>
+    <% end %>
+
+    <!-- group members div -->
+    <%= render layout: 'layouts/panel', locals:{title: "Group Members"} do %>
+      <h4>Admin</h4>
+      <%= render partial: 'group_user', collection: @group.get_admin, locals:{status: "admin"} %>
+      <%= "<h4>Members</h4>".html_safe if @group.get_members %>
+      <%= render partial: 'group_user', collection: @group.get_members, locals:{status: "member"} %>
+      <%= "<h4>Banned</h4>".html_safe if !@group.get_banned.empty? %>
+      <%= render partial: 'group_user', collection: @group.get_banned, locals:{status: "banned"} %>
+    <% end %>
+
   </div>
   <div class="col-sm-8">
     <h1><%= @group.groupname %></h1>
+
+<!-- errors -->
 <%= render partial: 'layouts/flash_errors'%>
-<% if @role.downcase != "banned" && !@role.empty? && @group.active %>
-Role: <%= @role %>
-<h3>Admin</h3>
-<%= render partial: 'group_user', collection: @group.get_admin, locals:{status: "admin"} %>
-<%= "<h3>Members</h3>".html_safe if @group.get_members %>
-<%= render partial: 'group_user', collection: @group.get_members, locals:{status: "member"} %>
-<%= "<h3>Banned</h3>".html_safe if !@group.get_banned.empty? %>
-<%= render partial: 'group_user', collection: @group.get_banned, locals:{status: "banned"} %>
 
-<hr />
-
-<%= link_to_if(@role=="admin", "Deactivate Group", modify_group_path(@group, a: "deactivate")) do
-  link_to "Leave Group", modify_group_path(@group, a: "leave")
-end %>
+<!-- chat window -->
 <div class="panel panel-default">
   <% if @group.messages.any? %>
     <div class="panel-body" id="messages">
@@ -30,21 +45,18 @@ end %>
   <%end%>
 </div>
 
-
+<!-- chat form -->
   <%= render partial: 'messages/message_form', locals: {message: @message, group: @group}%>
+</div>
+</div>
+<% end %>
 
-<% else %>
 <% if !@group.active %>
-This group has been de-activated
-<% elsif @role.empty? %>
-You are not a member of this group.  <%= link_to "Join Group", modify_group_path(@group, a: "join")%>
-<% elsif @role.downcase=="banned" %>
-You have been banned from this group.
+  This group has been de-activated
+  <% elsif @role.empty? %>
+  You are not a member of this group.  <%= link_to "Join Group", modify_group_path(@group, a: "join")%>
+  <% elsif @role.downcase=="banned" %>
+  You have been banned from this group.
 <% end %>
 <hr />
-  Please contact <%= link_to @group.get_admin[0].username, profile_path(@group.get_admin[0]) %> for details.
-  <%= link_to_if @role=="admin", "Activate", modify_group_path(@group, a: "activate") do end %>
-<% end %>
-<%= link_to_if @role=="admin","Delete Group", @group, method: :delete, data: { confirm: "Really?"}do end%>
-</div>
-</div>
+  Please contact <%= link_to @group.get_admin[0].username, profile_path(@group.get_admin[0]) %> for help
